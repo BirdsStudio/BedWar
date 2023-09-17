@@ -642,7 +642,7 @@ public class PlayerInfo {
             IGameRoomEvent event = getGameRoom().getEventControl().getNextEvent();
             StringBuilder s = new StringBuilder();
             if(event != null){
-                lore.add(event.display()+" &a"+formatTime1(event.getEventTime() - getGameRoom().getEventControl().loadTime));
+//                lore.add(event.display()+" &a"+formatTime1(event.getEventTime() - getGameRoom().getEventControl().loadTime));
                 lore.add("\uE1CC "+event.display()+formatTime1(event.getEventTime() - getGameRoom().getEventControl().loadTime));
             }else{
                 lore.add("\uE1CC "+formatTime1(getGameRoom().loadTime));
@@ -755,11 +755,11 @@ public class PlayerInfo {
                 if(spawnTime == 0 && !isSendkey){
                     isSendkey = true;
                     if(gameRoom != null) {
-                        sendTitle("&c你死了", gameRoom.reSpawnTime);
+                        sendTitle("&l&c你阵亡了", gameRoom.reSpawnTime);
                     }
                 }
                 if(gameRoom != null) {
-                    sendSubTitle((gameRoom.reSpawnTime - spawnTime) + " 秒后复活");
+                    sendTip((gameRoom.reSpawnTime - spawnTime) + " 秒后复活");
                 }
                 spawnTime++;
             }
@@ -830,8 +830,8 @@ public class PlayerInfo {
         if(getGameRoom().getWorldInfo().getConfig().getGameWorld() == null){
             return;
         }
-        player.teleport(getGameRoom().worldInfo.getConfig().getGameWorld().getSafeSpawn());
-        player.teleport(new Position(player.x,teamInfo.getTeamConfig().getBedPosition().y + 64,player.z,getLevel()));
+//        player.teleport(getGameRoom().worldInfo.getConfig().getGameWorld().getSafeSpawn());
+//        player.teleport(new Position(player.x,teamInfo.getTeamConfig().getBedPosition().y + 64,player.z,getLevel()));
         sendTitle("&c你死了");
         deathCount++;
         boolean end = !teamInfo.isBadExists();
@@ -845,7 +845,7 @@ public class PlayerInfo {
                     gameRoom.sendMessage(this + " &e被 &r" + damageByInfo + " 推入虚空。"+(end?" &b&l最终击杀!":""));
                     addKill(damageByInfo,end);
                 }
-                gameRoom.sendMessage(this + "&e掉入虚空");
+                gameRoom.sendMessage("玩家"+this + "因为自走导致进入了服主怀抱");
 
             } else if (event instanceof EntityDamageByEntityEvent) {
                 Entity entity = ((EntityDamageByEntityEvent) event).getDamager();
@@ -860,12 +860,12 @@ public class PlayerInfo {
                         gameRoom.sendMessage(this + " &e被 &r" + info + " "+killInfo+"了。"+(end?" &b&l最终击杀!":""));
                     }
                 } else {
-                    gameRoom.sendMessage(this + " &e被 &r" + entity.getName() + " 击败了"+(end?" &b&l最终击杀!":""));
+                    gameRoom.sendMessage(this + " &e被 &r" + entity.getName() + " 干掉了"+(end?" &b&l最终击杀!":""));
                 }
             } else {
                 if(damageByInfo != null){
                     addKill(damageByInfo,end);
-                    gameRoom.sendMessage(this + " &e被 &r" + damageByInfo + " 击败了"+(end?" &b&l最终击杀!":""));
+                    gameRoom.sendMessage(this + " &e被 &r" + damageByInfo + " 干掉了"+(end?" &b&l最终击杀!":""));
                 }else {
                     String deathInfo = "&e死了";
                     switch (event.getCause()){
@@ -895,9 +895,6 @@ public class PlayerInfo {
                 }
 
             }
-
-
-
         }
         if(end && getGameRoom().getType() != GameRoom.GameType.END){
             gameRoom.sendMessage(this + " &e淘汰了");

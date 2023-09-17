@@ -99,20 +99,20 @@ public class PlayerData {
         StringBuilder ls = new StringBuilder();
         if(l > 0){
             for(int i = 0;i < l;i++){
-                ls.append("&b■");
+                ls.append("§b■");
             }
         }
         StringBuilder others = new StringBuilder();
         if(other > 0){
             for(int i = 0;i < other;i++){
-                others.append("&7■");
+                others.append("7■");
             }
        }
         return ls +others.toString();
     }
 
     public String getColorByLevel(int level){
-        String[] color = new String[]{"&7","&f","&6","&b","&2","&3","&4","&d","&6","&e"};
+        String[] color = new String[]{"§7","§f","§6","§b","§2","§3","§4","§d","§6","§e"};
         if(level < 100){
             return color[0];
         }else{

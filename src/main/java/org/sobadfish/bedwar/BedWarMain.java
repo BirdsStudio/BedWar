@@ -11,6 +11,7 @@ import cn.nukkit.utils.TextFormat;
 import org.sobadfish.bedwar.command.BedWarAdminCommand;
 import org.sobadfish.bedwar.command.BedWarCommand;
 import org.sobadfish.bedwar.command.BedWarSpeakCommand;
+import org.sobadfish.bedwar.command.BedWarsInfoGui;
 import org.sobadfish.bedwar.entity.BridgingEggEntity;
 import org.sobadfish.bedwar.entity.EntityBlueWitherSkull;
 import org.sobadfish.bedwar.entity.EntityFireBall;
@@ -105,6 +106,7 @@ public class BedWarMain extends PluginBase {
         this.getServer().getCommandMap().register("badwar",new BedWarAdminCommand("bd"));
         this.getServer().getCommandMap().register("badwar",new BedWarCommand("bw"));
         this.getServer().getCommandMap().register("badwar",new BedWarSpeakCommand("bws"));
+        this.getServer().getCommandMap().register("badwar",new BedWarsInfoGui());
 
 
         RoomEventManager.register("time", TimeEvent.class);
