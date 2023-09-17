@@ -622,22 +622,21 @@ public class PlayerInfo {
 
     private ArrayList<String> getLore(boolean isWait){
         ArrayList<String> lore = new ArrayList<>();
-        String levelName = BedWarMain.getMenuRoomManager().getNameByRoom(gameRoom.getRoomConfig());
-        if(levelName == null){
-            levelName = " -- ";
-        }
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-        lore.add("&7"+format.format(new Date()));
-        lore.add("游戏模式: &a"+levelName);
+//        String levelName = BedWarMain.getMenuRoomManager().getNameByRoom(gameRoom.getRoomConfig());
+//        if(levelName == null){
+//            levelName = " -- ";
+//        }
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+//        lore.add("&7"+format.format(new Date()));
+//        lore.add("游戏模式: &a"+levelName);
 
-        lore.add(" ");
         if(isWait){
             //玩家等待时的计分板显示内容
 //            lore.add("玩家数: &a"+gameRoom.getPlayerInfos().size()+" &r/&a "+gameRoom.getRoomConfig().getMaxPlayerSize());
 //            lore.add("等待中....");
 //            lore.add("   ");
-            lore.add("\uE1CD "+gameRoom.getPlayerInfos().size()+" &f/ "+gameRoom.getRoomConfig().getMaxPlayerSize());
-            lore.add("\uE1CB "+this.gameRoom.getRoomConfig().name);
+            lore.add("\uE1CD "+gameRoom.getPlayerInfos().size()+"&f/"+gameRoom.getRoomConfig().getMaxPlayerSize());
+            lore.add("\uE1DB "+this.gameRoom.getRoomConfig().name);
 
         }else{
             IGameRoomEvent event = getGameRoom().getEventControl().getNextEvent();
