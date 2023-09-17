@@ -40,9 +40,15 @@ public class BedWarCommand extends Command {
                 if(i != null){
                     info = i;
                 }
-                BedWarFrom simple = new BedWarFrom(BedWarMain.getTitle(), "请选择地图", DisPlayWindowsFrom.getId(51530, 99810));
+                BedWarFrom simple = new BedWarFrom("§c起床§e战争§r - 国际版",
+                        "《起床战争》是一款脍炙人口小游戏玩法\n" +
+                                "你需要在资源点收集资源购买道具\n" +
+                                "并在保护本队床的同时让自身队伍变得更强。\n" +
+                                "§e我们提供多种《起床战争》的游戏模式》\n" +
+                                "§e当然,如果你不清楚游戏规则,可以试一试经典的4v4v4v4模式。", DisPlayWindowsFrom.getId(51530, 99810));
                 PlayerInfo finalInfo = info;
-                simple.add(new BaseIButtom(new ElementButton("随机匹配",new ElementButtonImageData("path","textures/ui/dressing_room_skins"))) {
+                //simple.add(new BaseIButtom(new ElementButton("随机匹配",new ElementButtonImageData("path","textures/ui/dressing_room_skins"))) {
+                simple.add(new BaseIButtom(new ElementButton("§l§5随机匹配")) {
                     @Override
                     public void onClick(Player player) {
                         RandomJoinManager.joinManager.join(finalInfo,null);
@@ -57,7 +63,7 @@ public class BedWarCommand extends Command {
                             size += room.getPlayerInfos().size();
                         }
                     }
-                    simple.add(new BaseIButtom(new ElementButton(TextFormat.colorize('&', wname + " &2" + size + " &r位玩家正在游玩\n&r房间数量: &a" + worldRoom.getRoomConfigs().size()), worldRoom.getImageData())) {
+                    simple.add(new BaseIButtom(new ElementButton(TextFormat.colorize('&', "&c起床&e战争 &r- &l&5国际版 "+wname+" \n&r\uE1CD "+size))) {
                         @Override
                         public void onClick(Player player) {
                             disPlayRoomsFrom(player, wname);

@@ -671,14 +671,14 @@ public class PlayerInfo {
             lore.add(s.toString());
             lore.add("\uE1CB "+killCount);
         }
-        Object obj = BedWarMain.getBedWarMain().getConfig().get("game-logo");
-        if(obj instanceof List){
-            for(Object s : (List<?>)obj){
-                lore.add(s.toString());
-            }
-        }else{
-            lore.add(BedWarMain.getBedWarMain().getConfig().getString("game-logo","&l&cT&6o&eC&ar&ba&9f&dt"));
-        }
+//        Object obj = BedWarMain.getBedWarMain().getConfig().get("game-logo");
+//        if(obj instanceof List){
+//            for(Object s : (List<?>)obj){
+//                lore.add(s.toString());
+//            }
+//        }else{
+//            lore.add(BedWarMain.getBedWarMain().getConfig().getString("game-logo","&l&cT&6o&eC&ar&ba&9f&dt"));
+//        }
         return lore;
     }
     private int loadTime = 0;
