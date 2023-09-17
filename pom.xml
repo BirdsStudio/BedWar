@@ -12,7 +12,9 @@
              <groupId>org.projectlombok</groupId>
              <artifactId>lombok</artifactId>
              <version>1.18.26</version>
-             <scope>provided</scope>
+             
+             <scope>system</scope>
+            <systemPath>${project.basedir}/lib/lombok.jar</systemPath>
         </dependency>
 
         <dependency>
