@@ -832,7 +832,7 @@ public class PlayerInfo {
         }
 //        player.teleport(getGameRoom().worldInfo.getConfig().getGameWorld().getSafeSpawn());
 //        player.teleport(new Position(player.x,teamInfo.getTeamConfig().getBedPosition().y + 64,player.z,getLevel()));
-        sendTitle("&c你死了");
+        sendTitle("&l&c你阵亡了");
         deathCount++;
         boolean end = !teamInfo.isBadExists();
 

@@ -3,9 +3,12 @@ package org.sobadfish.bedwar.command;
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
+import cn.nukkit.form.element.ElementButton;
+import cn.nukkit.utils.TextFormat;
 import org.sobadfish.bedwar.BedWarMain;
 import org.sobadfish.bedwar.panel.DisPlayWindowsFrom;
 import org.sobadfish.bedwar.panel.from.BedWarFrom;
+import org.sobadfish.bedwar.panel.from.button.BaseIButtom;
 import org.sobadfish.bedwar.player.PlayerData;
 
 /**
@@ -30,6 +33,12 @@ public class BedWarsInfoGui extends Command {
                             "\n§f总击杀: "+data.getFinalData(PlayerData.DataType.KILL)+
                             "\n§f总胜场: "+data.getFinalData(PlayerData.DataType.VICTORY)+
                             "\n§f总拆床数: "+data.getFinalData(PlayerData.DataType.BED_BREAK), DisPlayWindowsFrom.getId(51530,99810));
+            simple.add(new BaseIButtom(new ElementButton(TextFormat.colorize('&', "知道辣"))) {
+                @Override
+                public void onClick(Player player) {
+                    player.sendMessage("你居然知道辣？");
+                }
+            });
             simple.disPlay((Player) commandSender);
         }
         return false;
