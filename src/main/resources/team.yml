@@ -2,6 +2,8 @@ team:
   - name: "绿队"
     nameColor: "&a"
     blockWoolColor: "35:13"
+    nameUnicode: ""
+    nameKill: ""
     rgb:
       r: 0
       g: 255
@@ -23,6 +25,8 @@ team:
   - name: "黄队"
     nameColor: "&e"
     blockWoolColor: "35:4"
+    nameUnicode: ""
+    nameUnicodeKill: ""
     rgb:
       r: 255
       g: 255

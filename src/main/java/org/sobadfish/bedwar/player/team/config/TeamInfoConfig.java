@@ -57,6 +57,14 @@ public class TeamInfoConfig {
     public BlockFace getBedFace() {
         return bedFace;
     }
+    public String getNameUnicode(){
+        return teamConfig.getnameUnicode();
+    }
+
+    public String getNameKillUnicode(){
+        return teamConfig.getnameKillUnicode();
+    }
+
 
     public void setSpawnPosition(String spawnPosition) {
         this.spawnPosition = spawnPosition;
