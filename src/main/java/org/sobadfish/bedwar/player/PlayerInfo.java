@@ -633,40 +633,43 @@ public class PlayerInfo {
         lore.add(" ");
         if(isWait){
             //玩家等待时的计分板显示内容
-            lore.add("玩家数: &a"+gameRoom.getPlayerInfos().size()+" &r/&a "+gameRoom.getRoomConfig().getMaxPlayerSize());
-            lore.add("等待中....");
-            lore.add("   ");
+//            lore.add("玩家数: &a"+gameRoom.getPlayerInfos().size()+" &r/&a "+gameRoom.getRoomConfig().getMaxPlayerSize());
+//            lore.add("等待中....");
+//            lore.add("   ");
+            lore.add("\uE1CD "+gameRoom.getPlayerInfos().size()+" &f/ "+gameRoom.getRoomConfig().getMaxPlayerSize());
+            lore.add("\uE1CB "+this.gameRoom.getRoomConfig().name);
 
         }else{
             IGameRoomEvent event = getGameRoom().getEventControl().getNextEvent();
+            StringBuilder s = new StringBuilder();
             if(event != null){
                 lore.add(event.display()+" &a"+formatTime1(event.getEventTime() - getGameRoom().getEventControl().loadTime));
-                lore.add("    ");
+                lore.add("\uE1CC "+event.display()+formatTime1(event.getEventTime() - getGameRoom().getEventControl().loadTime));
             }else{
-
-                lore.add("游戏结束: &a"+formatTime(getGameRoom().loadTime));
+                lore.add("\uE1CC "+formatTime1(getGameRoom().loadTime));
             }
 
             for(TeamInfo teamInfo: gameRoom.getTeamInfos()){
-                String me = "";
-                if(getTeamInfo() != null && getTeamInfo().equals(teamInfo)){
-                    me = "&7(我)";
-                }
+                /*if(!teamInfo.isClose()){
+                    s.append(teamInfo.getTeamConfig().getNameUnicode());
+                }*/
                 if(teamInfo.isBadExists() && teamInfo.isLoading()){
-
-                    lore.add("◎ "+ teamInfo +":&r    &a✔ "+me);
+                    s.append(teamInfo.getTeamConfig().getNameUnicode());
                 }else if(!teamInfo.isBadExists() && teamInfo.isLoading()){
-                    lore.add("◎ "+ teamInfo +": &r   &c"+teamInfo.getLivePlayer().size()+" "+me);
-                }else{
-                    lore.add("◎ "+ teamInfo +": &r   &c✘ "+me);
+                    s.append(teamInfo.getTeamConfig().getNameKillUnicode());
                 }
             }
-            lore.add("      ");
-            lore.add("击杀数: &a"+killCount);
-            lore.add("助攻数: &a"+assists);
-            lore.add("破坏床数: &a"+bedBreakCount);
-
-            lore.add("        ");
+            if(this.teamInfo != null){
+                //显示队伍
+                //lore.add(this.teamInfo+"队".toString());
+                lore.add(this.teamInfo.getTeamConfig().getNameUnicode() + " "
+                        + teamInfo.getTeamConfig().getNameColor()
+                        + teamInfo);
+            }else{
+                lore.add("\uE18E 旁观者");
+            }
+            lore.add(s.toString());
+            lore.add("\uE1CB "+killCount);
         }
         Object obj = BedWarMain.getBedWarMain().getConfig().get("game-logo");
         if(obj instanceof List){
