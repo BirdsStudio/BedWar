@@ -136,10 +136,10 @@ public class BedWarCommand extends Command {
     }
     private void disPlayRoomsFrom(Player player,String name){
         FROM.remove(player.getName());
-        BedWarFrom simple = new BedWarFrom(BedWarMain.getTitle(), "请选择房间",DisPlayWindowsFrom.getId(51530,99810));
+        BedWarFrom simple = new BedWarFrom("§c起床§e战争§r 的房间列表", "请选择房间点击进入：\n§e注意：由于房间人数及状态变动极快,部分房间可能已开始游戏,你将以观战者模式进入",DisPlayWindowsFrom.getId(51530,99810));
         WorldRoom worldRoom = BedWarMain.getMenuRoomManager().getRoom(name);
         PlayerInfo info = new PlayerInfo(player);
-        simple.add(new BaseIButtom(new ElementButton("随机匹配",new ElementButtonImageData("path","textures/ui/dressing_room_skins"))) {
+        simple.add(new BaseIButtom(new ElementButton("§5随机匹配")) {
             @Override
             public void onClick(Player player) {
                 RandomJoinManager.joinManager.join(info,null);
@@ -148,22 +148,22 @@ public class BedWarCommand extends Command {
         });
         for (GameRoomConfig roomConfig: worldRoom.getRoomConfigs()) {
             int size = 0;
-            String type = "&a空闲";
+            String type = "&l&5等待中 &r&e可加入";
             GameRoom room = BedWarMain.getRoomManager().getRoom(roomConfig.name);
             if(room != null){
                 size = room.getPlayerInfos().size();
                 switch (room.getType()){
                     case START:
-                        type = "&c已开始";
+                        type = "&l&2游戏中 &r&b可观战";
                         break;
                     case END:
                         type = "&c等待房间结束";
                         break;
-                        default:break;
+                    default:break;
                 }
             }
 
-            simple.add(new BaseIButtom(new ElementButton(TextFormat.colorize('&',roomConfig.name+" &r状态:"+type + "&r\n人数: "+size+" / " + roomConfig.getMaxPlayerSize()), worldRoom.getImageData())) {
+            simple.add(new BaseIButtom(new ElementButton(TextFormat.colorize('&',type + "\n&r&4玩家数: "+size+"/" + roomConfig.getMaxPlayerSize()+"  &r&1地图： "+ roomConfig.name))) {
                 @Override
                 public void onClick(Player player) {
                     PlayerInfo playerInfo = new PlayerInfo(player);
